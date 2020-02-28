@@ -209,6 +209,7 @@ function mineBoxClick(ele){//格子点击
             var mineElement = $('mineField').getElementsByTagName('td');
             mineElement[mineArray[i]-1].setAttribute('class','mine');
         }
+	    alert("失败");
         ele.setAttribute('class','boom');
         $('start').setAttribute('src','sad.gif');
         //移除添加事件
