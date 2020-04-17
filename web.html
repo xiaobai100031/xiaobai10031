@@ -3,11 +3,13 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
     <title>123</title>
 
 </head>
-<body>
-    <canvas id="123"></canvas>
+<body style="margin:0">
+
+    <canvas id="123"  style="overflow:hidden;" ></canvas>
     <script>
         var inf = window.screen;
         var can = document.getElementById('123');
@@ -15,24 +17,30 @@
         can.height = inf.height;
         can.width = inf.width;
         ctx.font = '20px sans-serif';
-        console.log(ctx.font);
+        var s = '01';
         var i = 0;
         var cols = can.width / 20;
         var loc = [];
         for (var q = 0; q < cols; q++) {
             loc.push(0);
         }
+        var gradient = ctx.createLinearGradient(0, 0, inf.width, inf.height);
+        gradient.addColorStop("0", "#ff0099");
+        gradient.addColorStop("0.25", "#00ccff");
+        gradient.addColorStop("0.5", "#ffff00");
+        gradient.addColorStop("0.75", "#cc66cc");
+        gradient.addColorStop("0.1", "#00ccff");
         function p() {
             
-
-            ctx.fillStyle = '#000000';
-                ctx.fillRect(0, 0, can.width, can.height);
-            ctx.fillStyle = '#00e600';
+            ctx.fillStyle = "rgba(0,0,0,0.03)";
+            //ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, can.width, can.height);
+            ctx.fillStyle = gradient;
       
            for (var q = 0; q < cols; q++) {
-               ctx.fillText(String(Math.floor(Math.random() * 2)), q * 20, loc[q] * 20);
-               
-                if (loc[q] > can.height / 20 && Math.random() > 0.99) {
+               //ctx.fillText(String(Math.floor(Math.random() * 2)), q * 20, loc[q] * 20);
+               ctx.fillText(s[Math.floor(Math.random() * s.length)], q * 20, loc[q] * 20);
+                if (loc[q] > can.height / 20 && Math.random() > 0.9) {
                     loc[q] = 0;
                 }
                 loc[q]++;
@@ -45,8 +53,8 @@
             
            
         }
-        setInterval(p, 50);
-        p();
+        setInterval(p, 30);
+        
      
 
 
